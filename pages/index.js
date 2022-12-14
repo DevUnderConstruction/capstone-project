@@ -1,3 +1,15 @@
+import Head from "next/head";
+import Header from "../components/Header";
+import Usercard from "../components/Usercard";
+
 export default function Home() {
-  return <h1>Hello Beavers 🦫</h1>;
+  return (
+    <>
+      <Head>
+        <title>BillyBob.io🥂</title>
+      </Head>
+      <Header />
+      <Usercard />
+    </>
+  );
 }
