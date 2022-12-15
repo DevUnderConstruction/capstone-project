@@ -6,7 +6,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="firstName"
         name="firstName"
-        //defaultValue={curUser.firstName}
         value={client.firstName}
         onChange={handleInputChange}
         required
@@ -17,7 +16,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="lastName"
         name="lastName"
-        //defaultValue={curUser.lastName}
         value={client.lastName}
         onChange={handleInputChange}
         required
@@ -28,7 +26,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="email"
         id="email"
         name="email"
-        //defaultValue={curUser.email}
         value={client.email}
         onChange={handleInputChange}
         required
@@ -39,7 +36,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="tel"
         id="phoneNumber"
         name="phoneNumber"
-        //defaultValue={curUser.phoneNumber}
         value={client.phoneNumber}
         onChange={handleInputChange}
         required
@@ -50,7 +46,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="zip"
         name="zip"
-        //defaultValue={curUser.zip}
         value={client.zip}
         onChange={handleInputChange}
         required
@@ -61,7 +56,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="street"
         name="street"
-        //defaultValue={curUser.street}
         value={client.street}
         onChange={handleInputChange}
         required
@@ -72,7 +66,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="city"
         name="city"
-        //defaultValue={curUser.city}
         value={client.city}
         onChange={handleInputChange}
         required
@@ -83,7 +76,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="country"
         name="country"
-        //defaultValue={curUser.country}
         value={client.country}
         onChange={handleInputChange}
         required
@@ -94,7 +86,6 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         type="text"
         id="iban"
         name="iban"
-        //defaultValue={curUser.iban}
         value={client.iban}
         onChange={handleInputChange}
         required

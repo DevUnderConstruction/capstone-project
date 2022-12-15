@@ -30,7 +30,6 @@ export default function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(client);
   };
   const handleNav = () => {
     return setNav(!nav);
@@ -48,8 +47,8 @@ export default function Home() {
       ) : (
         <UserForm
           client={client}
-          handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
         />
       )}
 

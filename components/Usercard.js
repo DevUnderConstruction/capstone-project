@@ -6,7 +6,7 @@ export default function Usercard({ client }) {
       <li>{client.phoneNumber}</li>
       <li>{client.email}</li>
       <li>{client.street}</li>
-      <li>{client.zib}</li>
+      <li>{client.zip}</li>
       <li>{client.city}</li>
       <li>{client.country}</li>
       <li>{client.iban}</li>
