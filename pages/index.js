@@ -11,7 +11,7 @@ const curUser = {
   lastName: "Zufall",
   email: "rainer@zufall.com",
   phoneNumber: "07428233312",
-  zib: "56789",
+  zip: "56789",
   street: "Brandenburgische Str. 90",
   city: "Cologne",
   country: "Germany",

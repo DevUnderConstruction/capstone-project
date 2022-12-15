@@ -1,7 +1,7 @@
 export default function UserForm({ client, handleSubmit, handleInputChange }) {
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="firstName">Name{client.firstName}</label>
+      <label htmlFor="firstName">Name</label>
       <input
         type="text"
         id="firstName"
@@ -45,13 +45,13 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         required
       />
 
-      <label htmlFor="zib">ZIB</label>
+      <label htmlFor="zip">ZIP</label>
       <input
         type="text"
-        id="zib"
-        name="zib"
-        //defaultValue={curUser.zib}
-        value={client.zib}
+        id="zip"
+        name="zip"
+        //defaultValue={curUser.zip}
+        value={client.zip}
         onChange={handleInputChange}
         required
       />
