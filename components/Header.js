@@ -20,8 +20,8 @@ const StyledHeader = styled.header`
     margin-bottom: 0;
   }
   p {
-    position: absolute;
-    right: 0;
+    position: relative;
+    right: -90px;
 
     margin-top: 0;
   }
