@@ -1,6 +1,8 @@
+import styled from "styled-components";
+
 export default function UserForm({ client, handleSubmit, handleInputChange }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <label htmlFor="firstName">Name</label>
       <input
         type="text"
@@ -91,6 +93,25 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         required
       />
       <button type="submit">save</button>
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #4eb5f1;
+    text-align: center;
+  }
+`;
