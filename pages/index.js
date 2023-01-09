@@ -5,8 +5,8 @@ import Footer from "../components/Footer";
 import UserForm from "../components/UserForm";
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import CostumerForm from "../components/CostumerForm";
-const curCostumers = [
+import CustomerForm from "../components/CustomerForm";
+const curCustomers = [
   {
     id: 1,
     firstName: "Saven",
@@ -63,8 +63,8 @@ const curUser = {
 export default function Home() {
   const [client, setClient] = useState(curUser);
   const [nav, setNav] = useState("userCard");
-  const [costumers, setCostumers] = useState(curCostumers);
-  const [addCostumerFormData, setCostumerFormData] = useState({
+  const [customers, setCustomers] = useState(curCustomers);
+  const [addCustomerFormData, setCustomerFormData] = useState({
     id: "",
     firstName: "",
     lastName: "",
@@ -75,52 +75,52 @@ export default function Home() {
     city: "",
   });
 
-  const handleInputChange = (event) => {
+  const handleInputClientChange = (event) => {
     const { name, value } = event.target;
     setClient((prevProps) => ({
       ...prevProps,
       [name]: value,
     }));
   };
-  const handleAddCostumerForm = (event) => {
+  const handleAddCustomerForm = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    setCostumerFormData((prevProps) => ({
+    setCustomerFormData((prevProps) => ({
       ...prevProps,
       [name]: value,
     }));
   };
 
-  const handleAddCostumerFormSubmit = (event) => {
+  const handleAddCustomerFormSubmit = (event) => {
     event.preventDefault();
-    const newCostumer = {
+    const newCustomer = {
       id: nanoid(),
-      firstName: addCostumerFormData.firstName,
-      lastName: addCostumerFormData.lastName,
-      email: addCostumerFormData.email,
-      phoneNumber: addCostumerFormData.phoneNumber,
-      street: addCostumerFormData.street,
-      zip: addCostumerFormData.zip,
-      city: addCostumerFormData.city,
+      firstName: addCustomerFormData.firstName,
+      lastName: addCustomerFormData.lastName,
+      email: addCustomerFormData.email,
+      phoneNumber: addCustomerFormData.phoneNumber,
+      street: addCustomerFormData.street,
+      zip: addCustomerFormData.zip,
+      city: addCustomerFormData.city,
     };
-    setCostumers([...costumers, newCostumer]);
+    setCostumers([...customers, newCustomer]);
   };
-  const deleteCostumer = (id) => {
-    const updatedCostumer = [...costumers].filter(
-      (costumer) => costumer.id !== id
+  const deleteCustomer = (id) => {
+    const updatedCustomer = [...customers].filter(
+      (customer) => customer.id !== id
     );
-    setCostumers(updatedCostumer);
+    setCustomers(updatedCustomer);
   };
-  const handleSubmit = (event) => {
+  const handleSubmitClientForm = (event) => {
     event.preventDefault();
   };
-  const handleUser = () => {
+  const handleClickClient = () => {
     return setNav("userForm");
   };
-  const handleCostumer = () => {
-    return setNav("costumerForm");
+  const handleClickCustomer = () => {
+    return setNav("customerForm");
   };
-  const handleStart = () => {
+  const handleClickHome = () => {
     return setNav("userCard");
   };
   return (
@@ -133,25 +133,25 @@ export default function Home() {
       {nav === "userForm" && (
         <UserForm
           client={client}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
+          onChange={handleInputClientChange}
+          onSubmit={handleSubmitClientForm}
         />
       )}
 
-      {nav === "costumerForm" && (
-        <CostumerForm
-          setCostumers={setCostumers}
-          costumers={costumers}
-          handleAddCostumerFormSubmit={handleAddCostumerFormSubmit}
-          handleAddCostumerForm={handleAddCostumerForm}
-          deleteCostumer={deleteCostumer}
+      {nav === "customerForm" && (
+        <CustomerForm
+          setCustomers={setCustomers}
+          customers={customers}
+          handleAddCustomerFormSubmit={handleAddCustomerFormSubmit}
+          handleAddCustomerForm={handleAddCustomerForm}
+          deleteCustomer={deleteCustomer}
         />
       )}
 
       <Footer
-        handleUser={handleUser}
-        handleCostumer={handleCostumer}
-        handleStart={handleStart}
+        onClickClient={handleClickClient}
+        onClickCustomer={handleClickCustomer}
+        onClickHome={handleClickHome}
       />
     </>
   );

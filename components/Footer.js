@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-export default function Footer({ handleUser, handleCostumer, handleStart }) {
+export default function Footer({
+  onClickClient,
+  onClickCustomer,
+  onClickHome,
+}) {
   return (
     <StyledFooter>
-      <button onClick={handleUser}>User</button>
-      <button onClick={handleStart}>Home</button>
-      <button onClick={handleCostumer}>Costumer</button>
+      <button onClick={onClickClient}>Client</button>
+      <button onClick={onClickHome}>Home</button>
+      <button onClick={onClickCustomer}>Customer</button>
     </StyledFooter>
   );
 }

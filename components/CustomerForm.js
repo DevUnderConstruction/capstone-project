@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function CostumerForm({
-  costumers,
-  handleAddCostumerForm,
-  handleAddCostumerFormSubmit,
-  deleteCostumer,
-  setCostumers,
+export default function CustomerForm({
+  customers,
+  handleAddCustomerForm,
+  handleAddCustomerFormSubmit,
+  deleteCustomer,
+  setCustomers,
 }) {
-  const [editingCostumer, setEditingCostumer] = useState({
+  const [editingCustomer, setEditingCustomer] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -18,73 +18,73 @@ export default function CostumerForm({
     city: "",
   });
 
-  const [costumerEditId, setCostumerEditId] = useState(null);
+  const [customerEditId, setCustomerEditId] = useState(null);
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
 
-    const newFormData = { ...editingCostumer };
+    const newFormData = { ...editingCustomer };
     newFormData[fieldName] = fieldValue;
-    setEditingCostumer(newFormData);
+    setEditingCustomer(newFormData);
   };
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
-    const editedCostumer = {
-      id: costumerEditId,
-      firstName: editingCostumer.firstName,
-      lastName: editingCostumer.lastName,
-      email: editingCostumer.email,
-      phoneNumber: editingCostumer.phoneNumber,
-      street: editingCostumer.street,
-      zip: editingCostumer.zip,
-      city: editingCostumer.city,
+    const editedCustomer = {
+      id: customerEditId,
+      firstName: editingCustomer.firstName,
+      lastName: editingCustomer.lastName,
+      email: editingCustomer.email,
+      phoneNumber: editingCustomer.phoneNumber,
+      street: editingCustomer.street,
+      zip: editingCustomer.zip,
+      city: editingCustomer.city,
     };
 
-    const newCostumers = [...costumers];
+    const newCustomers = [...customers];
 
-    const index = costumers.findIndex(
-      (costumer) => costumer.id === costumerEditId
+    const index = customers.findIndex(
+      (customer) => customer.id === customerEditId
     );
-    newCostumers[index] = editedCostumer;
+    newCustomers[index] = editedCustomer;
 
-    setCostumers(newCostumers);
+    setCustomers(newCustomers);
   };
 
-  const handleEditClick = (event, costumer) => {
+  const handleEditClick = (event, customer) => {
     event.preventDefault();
-    setCostumerEditId(costumer.id);
+    setCustomerEditId(customer.id);
 
     const formValues = {
-      firstName: costumer.firstName,
-      lastName: costumer.lastName,
-      email: costumer.email,
-      phoneNumber: costumer.phoneNumber,
-      street: costumer.street,
-      zip: costumer.zip,
-      city: costumer.city,
+      firstName: customer.firstName,
+      lastName: customer.lastName,
+      email: customer.email,
+      phoneNumber: customer.phoneNumber,
+      street: customer.street,
+      zip: customer.zip,
+      city: customer.city,
     };
-    setEditingCostumer(formValues);
+    setEditingCustomer(formValues);
   };
   return (
     <>
       <div>
-        {costumers.map((costumer) => (
-          <StyledUl key={costumer.id}>
-            {costumerEditId === costumer.id ? (
+        {customers.map((customer) => (
+          <StyledUl key={customer.id}>
+            {customerEditId === customer.id ? (
               <li>
                 <StyledForm onSubmit={handleEditFormSubmit}>
-                  <p>{costumer.firstName}</p>
-                  <p>{costumer.lastName}</p>
+                  <p>{customer.firstName}</p>
+                  <p>{customer.lastName}</p>
                   <label htmlFor="firstName">Name</label>
                   <input
                     type="text"
                     id="firstName"
                     name="firstName"
-                    value={editingCostumer.firstName}
+                    value={editingCustomer.firstName}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -94,7 +94,7 @@ export default function CostumerForm({
                     type="text"
                     id="lastName"
                     name="lastName"
-                    value={editingCostumer.lastName}
+                    value={editingCustomer.lastName}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -104,7 +104,7 @@ export default function CostumerForm({
                     type="email"
                     id="email"
                     name="email"
-                    value={editingCostumer.email}
+                    value={editingCustomer.email}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -114,7 +114,7 @@ export default function CostumerForm({
                     type="tel"
                     id="phoneNumber"
                     name="phoneNumber"
-                    value={editingCostumer.phoneNumber}
+                    value={editingCustomer.phoneNumber}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -124,7 +124,7 @@ export default function CostumerForm({
                     type="text"
                     id="street"
                     name="street"
-                    value={editingCostumer.street}
+                    value={editingCustomer.street}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -133,7 +133,7 @@ export default function CostumerForm({
                     type="text"
                     id="zip"
                     name="zip"
-                    value={editingCostumer.zip}
+                    value={editingCustomer.zip}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -143,7 +143,7 @@ export default function CostumerForm({
                     type="text"
                     id="city"
                     name="city"
-                    value={editingCostumer.city}
+                    value={editingCustomer.city}
                     onChange={handleEditFormChange}
                     required
                   />
@@ -152,14 +152,14 @@ export default function CostumerForm({
                 </StyledForm>
               </li>
             ) : (
-              <li key={costumer.id}>{costumer.firstName}</li>
+              <li key={customer.id}>{customer.firstName}</li>
             )}
 
             <li>
-              <button onClick={(event) => handleEditClick(event, costumer)}>
+              <button onClick={(event) => handleEditClick(event, customer)}>
                 Edit
               </button>
-              <button onClick={() => deleteCostumer(costumer.id)}>
+              <button onClick={() => deleteCustomer(customer.id)}>
                 Delete
               </button>
             </li>
@@ -167,13 +167,13 @@ export default function CostumerForm({
         ))}
       </div>
 
-      <StyledForm onSubmit={handleAddCostumerFormSubmit}>
+      <StyledForm onSubmit={handleAddCustomerFormSubmit}>
         <label htmlFor="firstName">Name</label>
         <input
           type="text"
           id="firstName"
           name="firstName"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
 
@@ -182,7 +182,7 @@ export default function CostumerForm({
           type="text"
           id="lastName"
           name="lastName"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
 
@@ -191,7 +191,7 @@ export default function CostumerForm({
           type="email"
           id="email"
           name="email"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
 
@@ -200,7 +200,7 @@ export default function CostumerForm({
           type="tel"
           id="phoneNumber"
           name="phoneNumber"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
 
@@ -209,7 +209,7 @@ export default function CostumerForm({
           type="text"
           id="street"
           name="street"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
         <label htmlFor="zip">ZIP</label>
@@ -217,7 +217,7 @@ export default function CostumerForm({
           type="text"
           id="zip"
           name="zip"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
 
@@ -226,7 +226,7 @@ export default function CostumerForm({
           type="text"
           id="city"
           name="city"
-          onChange={handleAddCostumerForm}
+          onChange={handleAddCustomerForm}
           required
         />
 
