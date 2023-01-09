@@ -4,12 +4,14 @@ export default function Footer({
   onClickClient,
   onClickCustomer,
   onClickHome,
+  onClickArticle,
 }) {
   return (
     <StyledFooter>
       <button onClick={onClickClient}>Client</button>
       <button onClick={onClickHome}>Home</button>
       <button onClick={onClickCustomer}>Customer</button>
+      <button onClick={onClickArticle}>Article</button>
     </StyledFooter>
   );
 }

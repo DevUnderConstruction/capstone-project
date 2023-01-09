@@ -6,6 +6,8 @@ import UserForm from "../components/UserForm";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import CustomerForm from "../components/CustomerForm";
+import ArticleCard from "../components/ArticleCard";
+
 const curCustomers = [
   {
     id: 1,
@@ -48,6 +50,7 @@ const curCustomers = [
     city: "Oberderdingen",
   },
 ];
+
 const curUser = {
   id: 1,
   firstName: "Rainer",
@@ -60,10 +63,30 @@ const curUser = {
   country: "Germany",
   iban: "DE43500105175854591561",
 };
+
+const curArticles = [
+  {
+    articleNumber: 1,
+    articleName: "Kartoffeln",
+    price: 95,
+  },
+  {
+    articleNumber: 2,
+    articleName: "Eis",
+    price: 5,
+  },
+  {
+    articleNumber: 3,
+    articleName: "Pilze",
+    price: 10,
+  },
+];
+
 export default function Home() {
   const [client, setClient] = useState(curUser);
   const [nav, setNav] = useState("userCard");
   const [customers, setCustomers] = useState(curCustomers);
+  const [articles, setArticles] = useState(curArticles);
   const [addCustomerFormData, setCustomerFormData] = useState({
     id: "",
     firstName: "",
@@ -103,7 +126,7 @@ export default function Home() {
       zip: addCustomerFormData.zip,
       city: addCustomerFormData.city,
     };
-    setCostumers([...customers, newCustomer]);
+    setCustomers([...customers, newCustomer]);
   };
   const deleteCustomer = (id) => {
     const updatedCustomer = [...customers].filter(
@@ -114,6 +137,18 @@ export default function Home() {
   const handleSubmitClientForm = (event) => {
     event.preventDefault();
   };
+
+  const handleArticleAdd = (event) => {
+    event.preventDefault();
+    const newArticle = {
+      articleNumber: +event.target.articleNumber.value,
+      articleName: event.target.articleName.value,
+      price: +event.target.price.value,
+    };
+    setArticles([...articles, newArticle]);
+    event.target.reset();
+  };
+
   const handleClickClient = () => {
     return setNav("userForm");
   };
@@ -123,6 +158,10 @@ export default function Home() {
   const handleClickHome = () => {
     return setNav("userCard");
   };
+  const handleClickArticle = () => {
+    return setNav("articleCard");
+  };
+
   return (
     <>
       <Head>
@@ -147,11 +186,18 @@ export default function Home() {
           deleteCustomer={deleteCustomer}
         />
       )}
+      {nav === "articleCard" && (
+        <ArticleCard
+          articles={articles}
+          onArticleAddSubmit={handleArticleAdd}
+        />
+      )}
 
       <Footer
         onClickClient={handleClickClient}
         onClickCustomer={handleClickCustomer}
         onClickHome={handleClickHome}
+        onClickArticle={handleClickArticle}
       />
     </>
   );
