@@ -1,13 +1,15 @@
-export default function UserForm({ client, handleSubmit, handleInputChange }) {
+import styled from "styled-components";
+
+export default function UserForm({ client, onSubmit, onChange }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={onSubmit}>
       <label htmlFor="firstName">Name</label>
       <input
         type="text"
         id="firstName"
         name="firstName"
         value={client.firstName}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -17,7 +19,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="lastName"
         name="lastName"
         value={client.lastName}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -27,7 +29,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="email"
         name="email"
         value={client.email}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -37,7 +39,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="phoneNumber"
         name="phoneNumber"
         value={client.phoneNumber}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -47,7 +49,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="zip"
         name="zip"
         value={client.zip}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -57,7 +59,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="street"
         name="street"
         value={client.street}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -67,7 +69,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="city"
         name="city"
         value={client.city}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -77,7 +79,7 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="country"
         name="country"
         value={client.country}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
 
@@ -87,10 +89,29 @@ export default function UserForm({ client, handleSubmit, handleInputChange }) {
         id="iban"
         name="iban"
         value={client.iban}
-        onChange={handleInputChange}
+        onChange={onChange}
         required
       />
       <button type="submit">save</button>
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #4eb5f1;
+    text-align: center;
+  }
+`;

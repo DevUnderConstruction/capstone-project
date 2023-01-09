@@ -4,7 +4,50 @@ import Usercard from "../components/Usercard";
 import Footer from "../components/Footer";
 import UserForm from "../components/UserForm";
 import { useState } from "react";
-
+import { nanoid } from "nanoid";
+import CustomerForm from "../components/CustomerForm";
+const curCustomers = [
+  {
+    id: 1,
+    firstName: "Saven",
+    lastName: "Berger",
+    email: "info@extend.de",
+    phoneNumber: "022029375097",
+    street: "Schwalbenweg 28",
+    zip: 51467,
+    city: "Bergisch Gladbach",
+  },
+  {
+    id: 2,
+    firstName: "Naiche",
+    lastName: "Knuffig",
+    email: "infos@web-t.net",
+    phoneNumber: "02771/4657505",
+    street: "Alter Weg 19",
+    zip: 35687,
+    city: "Dillenburg",
+  },
+  {
+    id: 3,
+    firstName: "Silviana",
+    lastName: "Kaspar",
+    email: "info@web-t.net",
+    phoneNumber: "0203/4638163",
+    street: "Gaterweg 22",
+    zip: 47229,
+    city: "Duisburg",
+  },
+  {
+    id: 4,
+    firstName: "Hildis",
+    lastName: "Müller",
+    email: "gnther@comm-prefix.de",
+    phoneNumber: "07045/4295987",
+    street: "Bertha-Benz-Str. 4B",
+    zip: 75038,
+    city: "Oberderdingen",
+  },
+];
 const curUser = {
   id: 1,
   firstName: "Rainer",
@@ -19,40 +62,97 @@ const curUser = {
 };
 export default function Home() {
   const [client, setClient] = useState(curUser);
-  const [nav, setNav] = useState(true);
-  const handleInputChange = (event) => {
+  const [nav, setNav] = useState("userCard");
+  const [customers, setCustomers] = useState(curCustomers);
+  const [addCustomerFormData, setCustomerFormData] = useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    street: "",
+    zip: "",
+    city: "",
+  });
+
+  const handleInputClientChange = (event) => {
     const { name, value } = event.target;
     setClient((prevProps) => ({
       ...prevProps,
       [name]: value,
     }));
   };
+  const handleAddCustomerForm = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setCustomerFormData((prevProps) => ({
+      ...prevProps,
+      [name]: value,
+    }));
+  };
 
-  const handleSubmit = (event) => {
+  const handleAddCustomerFormSubmit = (event) => {
+    event.preventDefault();
+    const newCustomer = {
+      id: nanoid(),
+      firstName: addCustomerFormData.firstName,
+      lastName: addCustomerFormData.lastName,
+      email: addCustomerFormData.email,
+      phoneNumber: addCustomerFormData.phoneNumber,
+      street: addCustomerFormData.street,
+      zip: addCustomerFormData.zip,
+      city: addCustomerFormData.city,
+    };
+    setCostumers([...customers, newCustomer]);
+  };
+  const deleteCustomer = (id) => {
+    const updatedCustomer = [...customers].filter(
+      (customer) => customer.id !== id
+    );
+    setCustomers(updatedCustomer);
+  };
+  const handleSubmitClientForm = (event) => {
     event.preventDefault();
   };
-  const handleNav = () => {
-    return setNav(!nav);
+  const handleClickClient = () => {
+    return setNav("userForm");
   };
-
+  const handleClickCustomer = () => {
+    return setNav("customerForm");
+  };
+  const handleClickHome = () => {
+    return setNav("userCard");
+  };
   return (
     <>
       <Head>
         <title>BillyBob.io🥂</title>
       </Head>
       <Header />
-
-      {nav ? (
-        <Usercard client={client} />
-      ) : (
+      {nav === "userCard" && <Usercard client={client} />}
+      {nav === "userForm" && (
         <UserForm
           client={client}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
+          onChange={handleInputClientChange}
+          onSubmit={handleSubmitClientForm}
         />
       )}
 
-      <Footer handleNav={handleNav} />
+      {nav === "customerForm" && (
+        <CustomerForm
+          setCustomers={setCustomers}
+          customers={customers}
+          handleAddCustomerFormSubmit={handleAddCustomerFormSubmit}
+          handleAddCustomerForm={handleAddCustomerForm}
+          deleteCustomer={deleteCustomer}
+        />
+      )}
+
+      <Footer
+        onClickClient={handleClickClient}
+        onClickCustomer={handleClickCustomer}
+        onClickHome={handleClickHome}
+      />
     </>
   );
 }
