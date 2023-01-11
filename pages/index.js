@@ -8,7 +8,7 @@ import { nanoid } from "nanoid";
 import CustomerForm from "../components/CustomerForm";
 import ArticleCard from "../components/ArticleCard";
 
-const curCustomers = [
+const currentCustomers = [
   {
     id: 1,
     firstName: "Saven",
@@ -51,7 +51,7 @@ const curCustomers = [
   },
 ];
 
-const curUser = {
+const currentUser = {
   id: 1,
   firstName: "Rainer",
   lastName: "Zufall",
@@ -64,7 +64,7 @@ const curUser = {
   iban: "DE43500105175854591561",
 };
 
-const curArticles = [
+const currentArticles = [
   {
     articleNumber: 1,
     articleName: "Kartoffeln",
@@ -83,10 +83,10 @@ const curArticles = [
 ];
 
 export default function Home() {
-  const [client, setClient] = useState(curUser);
+  const [client, setClient] = useState(currentUser);
   const [nav, setNav] = useState("userCard");
-  const [customers, setCustomers] = useState(curCustomers);
-  const [articles, setArticles] = useState(curArticles);
+  const [customers, setCustomers] = useState(currentCustomers);
+  const [articles, setArticles] = useState(currentArticles);
   const [addCustomerFormData, setCustomerFormData] = useState({
     id: "",
     firstName: "",
