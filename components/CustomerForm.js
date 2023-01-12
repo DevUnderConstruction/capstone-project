@@ -52,6 +52,7 @@ export default function CustomerForm({
     newCustomers[index] = editedCustomer;
 
     setCustomers(newCustomers);
+    setCustomerEditId();
   };
 
   const handleEditClick = (event, customer) => {

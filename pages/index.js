@@ -189,6 +189,7 @@ export default function Home() {
       {nav === "articleCard" && (
         <ArticleCard
           articles={articles}
+          setArticles={setArticles}
           onArticleAddSubmit={handleArticleAdd}
         />
       )}
