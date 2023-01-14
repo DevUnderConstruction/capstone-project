@@ -1,8 +1,8 @@
-export default function SelectCustomer({ customers }) {
+export default function SelectCustomer({ customers, onChange }) {
   return (
     <label>
       select a customer:
-      <select>
+      <select onChange={onChange}>
         <option>please select</option>
         {customers.map((customer) => (
           <option value={customer.id} key={customer.id}>
