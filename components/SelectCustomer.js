@@ -1,4 +1,4 @@
-export default function SelectCustomer({ customers, onChange }) {
+export default function SelectCustomer({ customers, onChange, disable }) {
   return (
     <label>
       select a customer:
@@ -10,6 +10,7 @@ export default function SelectCustomer({ customers, onChange }) {
           </option>
         ))}
       </select>
+      <button disabled={disable}>select</button>
     </label>
   );
 }

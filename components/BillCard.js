@@ -1,5 +1,8 @@
 import SelectCustomer from "./SelectCustomer";
+import { useState } from "react";
 export default function BillCard({ customers }) {
+  const [disable, setDisable] = useState(true);
+
   const handleSelectClick = (event) => {
     event.preventDefault();
 
@@ -7,8 +10,15 @@ export default function BillCard({ customers }) {
     const selectedCustomer = customers.find(
       (customer) => customer.id === Number(event.target.value)
     );
-    console.log(selectedCustomer);
+
+    setDisable(false);
   };
 
-  return <SelectCustomer customers={customers} onChange={handleSelectClick} />;
+  return (
+    <SelectCustomer
+      customers={customers}
+      onChange={handleSelectClick}
+      disable={disable}
+    />
+  );
 }
