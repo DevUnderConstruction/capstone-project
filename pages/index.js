@@ -7,6 +7,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import CustomerForm from "../components/CustomerForm";
 import ArticleCard from "../components/ArticleCard";
+import BillCard from "../components/BillCard";
 
 const currentCustomers = [
   {
@@ -161,6 +162,9 @@ export default function Home() {
   const handleClickArticle = () => {
     return setNav("articleCard");
   };
+  const handleSelectAccount = () => {
+    return setNav("billCard");
+  };
 
   return (
     <>
@@ -168,7 +172,9 @@ export default function Home() {
         <title>BillyBob.io🥂</title>
       </Head>
       <Header />
-      {nav === "userCard" && <Usercard client={client} />}
+      {nav === "userCard" && (
+        <Usercard onClick={handleSelectAccount} client={client} />
+      )}
       {nav === "userForm" && (
         <UserForm
           client={client}
@@ -193,7 +199,7 @@ export default function Home() {
           onArticleAddSubmit={handleArticleAdd}
         />
       )}
-
+      {nav === "billCard" && <BillCard client={client} customers={customers} />}
       <Footer
         onClickClient={handleClickClient}
         onClickCustomer={handleClickCustomer}
