@@ -8,7 +8,7 @@ export default function BillCard({ customers }) {
 
     const selectedCustomerId = Number(event.target.value);
     const selectedCustomer = customers.find(
-      (customer) => customer.id === Number(event.target.value)
+      (customer) => customer.id === selectedCustomerId
     );
 
     setDisable(false);
