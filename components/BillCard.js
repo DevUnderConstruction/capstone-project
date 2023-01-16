@@ -1,7 +1,11 @@
 import SelectCustomer from "./SelectCustomer";
 import { useState } from "react";
+import Adresslist from "./AdressList";
+
 export default function BillCard({ customers }) {
   const [disable, setDisable] = useState(true);
+  const [billCard, setBillCard] = useState("selectCustomer");
+  const [billAdress, setBillAdress] = useState();
 
   const handleSelectClick = (event) => {
     event.preventDefault();
@@ -12,13 +16,28 @@ export default function BillCard({ customers }) {
     );
 
     setDisable(false);
+    setBillAdress(selectedCustomer);
+  };
+
+  const handleSelectCustomerButtonClick = () => {
+    setBillCard("billCard");
   };
 
   return (
-    <SelectCustomer
-      customers={customers}
-      onChange={handleSelectClick}
-      disable={disable}
-    />
+    <>
+      {billCard === "selectCustomer" && (
+        <SelectCustomer
+          customers={customers}
+          onChange={handleSelectClick}
+          disable={disable}
+          onClick={handleSelectCustomerButtonClick}
+        />
+      )}
+      {billCard === "billCard" && (
+        <>
+          <Adresslist billAdress={billAdress} />
+        </>
+      )}
+    </>
   );
 }
