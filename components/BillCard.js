@@ -39,6 +39,11 @@ export default function BillCard({ customers, articles }) {
     setSelectedArticles([...selectedArticles, selectArticle]);
   };
 
+  let total = 0;
+  selectedArticles.forEach((article) => {
+    total = total + article.price;
+  });
+
   return (
     <>
       {billCard === "selectCustomer" && (
@@ -52,7 +57,7 @@ export default function BillCard({ customers, articles }) {
       {billCard === "billCard" && (
         <>
           <Adresslist billAdress={billAdress} />
-          <ArticleBillList selectedArticles={selectedArticles} />
+          <ArticleBillList selectedArticles={selectedArticles} total={total} />
           <SelectArticle articles={articles} onChange={onChangeArticle} />
         </>
       )}

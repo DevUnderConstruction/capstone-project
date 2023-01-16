@@ -1,4 +1,4 @@
-export default function ArticleBillList({ selectedArticles }) {
+export default function ArticleBillList({ selectedArticles, total }) {
   return (
     <>
       <ul>
@@ -13,6 +13,7 @@ export default function ArticleBillList({ selectedArticles }) {
           <li>{article.price} €</li>
         </ul>
       ))}
+      <p>Total: {total}€</p>
     </>
   );
 }
