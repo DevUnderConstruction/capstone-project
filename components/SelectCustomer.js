@@ -33,7 +33,10 @@ const StyledSection = styled.section`
     line-height: 2.5rem;
     font-size: 20px;
     select {
+      color: #ffffff;
+      background-color: #4eb5f1;
       font-size: 20px;
+      border-radius: 10px;
     }
     button:disabled {
       display: inline-block;
