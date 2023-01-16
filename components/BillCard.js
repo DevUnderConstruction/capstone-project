@@ -2,6 +2,7 @@ import SelectCustomer from "./SelectCustomer";
 import { useState } from "react";
 import Adresslist from "./AdressList";
 import SelectArticle from "./SelectArticle";
+import ArticleBillList from "./ArticleBillList";
 
 export default function BillCard({ customers, articles }) {
   const [disable, setDisable] = useState(true);
@@ -51,6 +52,7 @@ export default function BillCard({ customers, articles }) {
       {billCard === "billCard" && (
         <>
           <Adresslist billAdress={billAdress} />
+          <ArticleBillList selectedArticles={selectedArticles} />
           <SelectArticle articles={articles} onChange={onChangeArticle} />
         </>
       )}
