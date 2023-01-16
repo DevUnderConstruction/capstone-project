@@ -1,11 +1,13 @@
 import SelectCustomer from "./SelectCustomer";
 import { useState } from "react";
 import Adresslist from "./AdressList";
+import SelectArticle from "./SelectArticle";
 
-export default function BillCard({ customers }) {
+export default function BillCard({ customers, articles }) {
   const [disable, setDisable] = useState(true);
   const [billCard, setBillCard] = useState("selectCustomer");
   const [billAdress, setBillAdress] = useState();
+  const [selectedArticles, setSelectedArticles] = useState([]);
 
   const handleSelectClick = (event) => {
     event.preventDefault();
@@ -23,6 +25,19 @@ export default function BillCard({ customers }) {
     setBillCard("billCard");
   };
 
+  const onChangeArticle = (event) => {
+    event.preventDefault();
+
+    const selectArticle = {
+      ...articles.find(
+        (article) => article.articleNumber === Number(event.target.value)
+      ),
+      count: 1,
+    };
+
+    setSelectedArticles([...selectedArticles, selectArticle]);
+  };
+
   return (
     <>
       {billCard === "selectCustomer" && (
@@ -36,6 +51,7 @@ export default function BillCard({ customers }) {
       {billCard === "billCard" && (
         <>
           <Adresslist billAdress={billAdress} />
+          <SelectArticle articles={articles} onChange={onChangeArticle} />
         </>
       )}
     </>
