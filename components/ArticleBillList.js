@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export default function ArticleBillList({ selectedArticles, total }) {
+export default function ArticleBillList({
+  selectedArticles,
+  total,
+  onClickIncrement,
+  onclickDecrement,
+}) {
   return (
     <>
       <StyledUl>
@@ -8,11 +13,15 @@ export default function ArticleBillList({ selectedArticles, total }) {
         <li>Count</li>
         <li>Price</li>
       </StyledUl>
-      {selectedArticles.map((article) => (
+      {selectedArticles.map((article, index) => (
         <StyledUlSelectedArticel key={article.articleNumber}>
           <li>{article.articleName}</li>
-          <li>{article.count}</li>
-          <li>{article.price} €</li>
+          <li>
+            <button onClick={() => onclickDecrement(index)}>-</button>{" "}
+            {article.count}{" "}
+            <button onClick={() => onClickIncrement(index)}>+</button>
+          </li>
+          <li>{article.price * article.count} €</li>
         </StyledUlSelectedArticel>
       ))}
       <StyledSection>
@@ -39,6 +48,22 @@ const StyledUlSelectedArticel = styled.ul`
   padding-right: 40px;
   li {
     list-style-type: none;
+    button:first-of-type {
+      background-color: red;
+      opacity: 0.8;
+    }
+    button {
+      display: inline-block;
+      padding: 0.3em 0.8em;
+      margin: 0;
+      border-radius: 2em;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-weight: 300;
+      color: #ffffff;
+      background-color: #4eb5f1;
+      text-align: center;
+    }
   }
   li:nth-child(2n) {
     text-align: center;
