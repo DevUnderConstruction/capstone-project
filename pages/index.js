@@ -199,7 +199,9 @@ export default function Home() {
           onArticleAddSubmit={handleArticleAdd}
         />
       )}
-      {nav === "billCard" && <BillCard client={client} customers={customers} />}
+      {nav === "billCard" && (
+        <BillCard client={client} customers={customers} articles={articles} />
+      )}
       <Footer
         onClickClient={handleClickClient}
         onClickCustomer={handleClickCustomer}
