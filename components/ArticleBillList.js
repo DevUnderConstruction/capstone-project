@@ -4,6 +4,7 @@ export default function ArticleBillList({
   selectedArticles,
   total,
   onClickIncrement,
+  onclickDecrement,
 }) {
   return (
     <>
@@ -16,6 +17,7 @@ export default function ArticleBillList({
         <StyledUlSelectedArticel key={article.articleNumber}>
           <li>{article.articleName}</li>
           <li>
+            <button onClick={() => onclickDecrement(index)}>-</button>
             {article.count}
             <button onClick={() => onClickIncrement(index)}>+</button>
           </li>

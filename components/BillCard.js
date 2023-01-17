@@ -49,7 +49,13 @@ export default function BillCard({ customers, articles }) {
     newArticles[index].count++;
     setSelectedArticles(newArticles);
   };
-
+  const handleQuantityDecrease = (index) => {
+    const newArticlesCount = [...selectedArticles];
+    if (newArticlesCount[index].count > 1) {
+      newArticlesCount[index].count--;
+      setSelectedArticles(newArticlesCount);
+    }
+  };
   return (
     <>
       {billCard === "selectCustomer" && (
@@ -67,6 +73,7 @@ export default function BillCard({ customers, articles }) {
             selectedArticles={selectedArticles}
             total={total}
             onClickIncrement={handleQuantityIncrease}
+            onclickDecrement={handleQuantityDecrease}
           />
           <SelectArticle articles={articles} onChange={onChangeArticle} />
         </>
