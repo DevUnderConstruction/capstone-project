@@ -41,8 +41,14 @@ export default function BillCard({ customers, articles }) {
 
   let total = 0;
   selectedArticles.forEach((article) => {
-    total = total + article.price;
+    total = total + article.price * article.count;
   });
+
+  const handleQuantityIncrease = (index) => {
+    const newArticles = [...selectedArticles];
+    newArticles[index].count++;
+    setSelectedArticles(newArticles);
+  };
 
   return (
     <>
@@ -57,7 +63,11 @@ export default function BillCard({ customers, articles }) {
       {billCard === "billCard" && (
         <>
           <Adresslist billAdress={billAdress} />
-          <ArticleBillList selectedArticles={selectedArticles} total={total} />
+          <ArticleBillList
+            selectedArticles={selectedArticles}
+            total={total}
+            onClickIncrement={handleQuantityIncrease}
+          />
           <SelectArticle articles={articles} onChange={onChangeArticle} />
         </>
       )}

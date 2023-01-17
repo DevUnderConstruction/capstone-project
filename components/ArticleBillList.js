@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export default function ArticleBillList({ selectedArticles, total }) {
+export default function ArticleBillList({
+  selectedArticles,
+  total,
+  onClickIncrement,
+}) {
   return (
     <>
       <StyledUl>
@@ -8,11 +12,14 @@ export default function ArticleBillList({ selectedArticles, total }) {
         <li>Count</li>
         <li>Price</li>
       </StyledUl>
-      {selectedArticles.map((article) => (
+      {selectedArticles.map((article, index) => (
         <StyledUlSelectedArticel key={article.articleNumber}>
           <li>{article.articleName}</li>
-          <li>{article.count}</li>
-          <li>{article.price} €</li>
+          <li>
+            {article.count}
+            <button onClick={() => onClickIncrement(index)}>+</button>
+          </li>
+          <li>{article.price * article.count} €</li>
         </StyledUlSelectedArticel>
       ))}
       <StyledSection>
