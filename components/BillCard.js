@@ -51,10 +51,13 @@ export default function BillCard({ customers, articles }) {
   };
   const handleQuantityDecrease = (index) => {
     const newArticlesCount = [...selectedArticles];
-    if (newArticlesCount[index].count > 1) {
+
+    if (newArticlesCount[index].count >= 2) {
       newArticlesCount[index].count--;
-      setSelectedArticles(newArticlesCount);
+    } else if (newArticlesCount[index].count === 1) {
+      newArticlesCount.splice(newArticlesCount[index], 1);
     }
+    setSelectedArticles(newArticlesCount);
   };
   return (
     <>
