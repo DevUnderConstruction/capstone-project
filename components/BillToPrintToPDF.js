@@ -7,13 +7,13 @@ export const BillToPrintToPDF = React.forwardRef((props, ref) => {
 
   return (
     <StyledDiv ref={ref}>
-      <StyledInvoiceWraper class="invoice overflow-auto">
+      <StyledInvoiceWraper>
         <div>
           <StyledHeader>
-            <div class="row">
-              <div class="col"></div>
-              <StyledCompanyDetailsDiv class="col company-details">
-                <h2 class="name">
+            <div>
+              <div></div>
+              <StyledCompanyDetailsDiv>
+                <h2>
                   {props.client.firstName} {props.client.lastName}
                 </h2>
                 <div>{props.client.street}</div>
@@ -25,20 +25,20 @@ export const BillToPrintToPDF = React.forwardRef((props, ref) => {
             </div>
           </StyledHeader>
           <main>
-            <StyledContactsDiv class="row contacts">
-              <div class="col invoice-to">
-                <div class="text-gray-light">INVOICE TO:</div>
-                <h2 class="to">
+            <StyledContactsDiv>
+              <div>
+                <div>INVOICE TO:</div>
+                <h2>
                   {props.billAdress.firstName} {props.billAdress.lastName}
                 </h2>
-                <div class="address">{props.billAdress.street}</div>
-                <div class="email">
+                <div>{props.billAdress.street}</div>
+                <div>
                   {props.billAdress.zip} {props.billAdress.city}
                 </div>
               </div>
-              <StyledInvoiceDetailsDiv class="col invoice-details">
-                <div class="date">Date: {props.currentDate}</div>
-                <div class="date">Incoice-Id: {props.invoiceId}</div>
+              <StyledInvoiceDetailsDiv>
+                <div>Date: {props.currentDate}</div>
+                <div>Invcoice-Id: {props.invoiceId}</div>
               </StyledInvoiceDetailsDiv>
             </StyledContactsDiv>
             <StyledTable>
@@ -72,19 +72,19 @@ export const BillToPrintToPDF = React.forwardRef((props, ref) => {
                 </tr>
               </tfoot>
             </StyledTable>
-            <div class="thanks">Thank you!</div>
-            <div class="notices">
-              <div>NOTICE:</div>
-              <div class="notice">
-                A finance charge of 1.5% will be made on unpaid balances after
-                30 days.
-              </div>
-            </div>
+            <StyledP>Thank you!</StyledP>
+            <StyledNoticeDiv>
+              <p>NOTICE:</p>
+              <p>
+                Please pay to {props.client.iban}. A finance charge of 100% or 1
+                BTC will be made on unpaid balances after 30 days.
+              </p>
+            </StyledNoticeDiv>
           </main>
-          <footer>
+          <StyledFooter>
             Invoice was created on a computer and is valid without the signature
             and seal.
-          </footer>
+          </StyledFooter>
         </div>
 
         <div></div>
@@ -134,8 +134,6 @@ const StyledInvoiceDetailsDiv = styled.div`
 const StyledTable = styled.table`
   border: 0;
   border-collapse: collapse;
-  border-bottom: 1px solid #4eb5f1;
-
   width: 100%;
 
   thead {
@@ -151,10 +149,10 @@ const StyledTable = styled.table`
       text-align: right;
     }
   }
+
   tbody {
-     {
-      border-bottom: 1px solid #4eb5f1;
-    }
+    border-bottom: 1px solid #4eb5f1;
+
     td:first-child {
       text-align: left;
     }
@@ -164,4 +162,37 @@ const StyledTable = styled.table`
       text-align: right;
     }
   }
+
+  tfoot {
+    white-space: nowrap;
+    text-align: right;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin: 30px;
+    border-bottom: 3px double #4eb5f1;
+    td {
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+  }
+`;
+const StyledFooter = styled.footer`
+  width: 100%;
+  text-align: center;
+  color: #777;
+  border-top: 1px solid #aaa;
+  padding: 8px 0;
+`;
+
+const StyledNoticeDiv = styled.div`
+  border-left: 3px solid #4eb5f1;
+  padding-left: 5px;
+  margin-bottom: 20px;
+
+  bottom: 0;
+`;
+
+const StyledP = styled.p`
+  font-size: 2em;
+  margin-bottom: 50px;
 `;
