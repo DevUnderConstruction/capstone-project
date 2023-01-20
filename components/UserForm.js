@@ -106,17 +106,24 @@ const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   top: 10vh;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 2em;
+  padding-top: 0.9em;
+  border: 2px solid #4eb5f1;
+  border-radius: 2em;
   label {
-    margin-left: 2em;
     padding-bottom: 0.5rem;
   }
   input {
+    margin-right: 4em;
     margin-right: 2em;
+    border-radius: 0.8em;
   }
   button {
     display: inline-block;
     padding: 0.3em 1.2em;
-    margin: 0 0.3em 0.3em 2em;
+    margin: 0 0.3em 1em 2em;
     border-radius: 2em;
     box-sizing: border-box;
     text-decoration: none;
