@@ -98,14 +98,25 @@ export default function UserForm({ client, onSubmit, onChange }) {
 }
 
 const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 8em;
+  column-gap: 2em;
   justify-content: center;
   align-items: center;
+  top: 10vh;
+  label {
+    margin-left: 2em;
+    padding-bottom: 0.5rem;
+  }
+  input {
+    margin-right: 2em;
+  }
   button {
     display: inline-block;
     padding: 0.3em 1.2em;
-    margin: 0 0.3em 0.3em 0;
+    margin: 0 0.3em 0.3em 2em;
     border-radius: 2em;
     box-sizing: border-box;
     text-decoration: none;

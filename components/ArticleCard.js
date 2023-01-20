@@ -66,7 +66,7 @@ export default function ArticleCard({
                 <p>{article.price} €</p>
               </li>
               <li>
-                <StyledForm onSubmit={handleEditFormSubmit}>
+                <StyledEditForm onSubmit={handleEditFormSubmit}>
                   <label htmlFor="articleName">Articlename</label>
                   <input
                     type="text"
@@ -86,7 +86,7 @@ export default function ArticleCard({
                     required
                   />
                   <button type="submit">save</button>
-                </StyledForm>
+                </StyledEditForm>
               </li>
             </>
           ) : (
@@ -113,6 +113,7 @@ export default function ArticleCard({
         <input type="text" id="price" name="price" required />
         <button type="submit">save</button>
       </StyledForm>
+      <StyledDiv></StyledDiv>
     </>
   );
 }
@@ -122,6 +123,18 @@ const StyledForm = styled.form`
   grid-template-columns: repeat(2, 1fr);
   bottom: 0px;
   gap: 5px;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border: 2px solid #4eb5f1;
+  border-radius: 2em;
+  input {
+    border-radius: 10px;
+    margin-right: 0.8em;
+  }
+
   button {
     display: inline-block;
     padding: 0.3em 1.2em;
@@ -136,17 +149,19 @@ const StyledForm = styled.form`
   }
 `;
 const StyledUl = styled.ul`
-  margin: 0;
+  margin-right: 2em;
+  margin-left: 2em;
+  border: 2px solid #4eb5f1;
+  border-radius: 2em;
   li {
     list-style: none;
     display: grid;
-    margin: 0;
     grid-template-columns: repeat(4, 1fr);
 
     button {
       display: inline-block;
       padding: 0.3em 1.2em;
-      margin: 1em 0.3em 1em 0;
+      margin: 1em 2em 1em 0;
       border-radius: 2em;
       box-sizing: border-box;
       text-decoration: none;
@@ -156,4 +171,15 @@ const StyledUl = styled.ul`
       text-align: center;
     }
   }
+`;
+
+const StyledEditForm = styled.form`
+  input {
+    margin-top: 0.9em;
+    border-radius: 10px;
+    margin-right: 0.8em;
+  }
+`;
+const StyledDiv = styled.div`
+  height: 5em;
 `;

@@ -72,12 +72,12 @@ export default function CustomerForm({
   };
   return (
     <>
-      <div>
+      <StyledSection>
         {customers.map((customer) => (
           <StyledUl key={customer.id}>
             {customerEditId === customer.id ? (
               <li>
-                <StyledForm onSubmit={handleEditFormSubmit}>
+                <StyledEditForm onSubmit={handleEditFormSubmit}>
                   <p>{customer.firstName}</p>
                   <p>{customer.lastName}</p>
                   <label htmlFor="firstName">Name</label>
@@ -150,10 +150,12 @@ export default function CustomerForm({
                   />
 
                   <button type="submit">save</button>
-                </StyledForm>
+                </StyledEditForm>
               </li>
             ) : (
-              <li key={customer.id}>{customer.firstName}</li>
+              <li key={customer.id}>
+                {customer.firstName} {customer.lastName}
+              </li>
             )}
 
             <li>
@@ -166,7 +168,7 @@ export default function CustomerForm({
             </li>
           </StyledUl>
         ))}
-      </div>
+      </StyledSection>
 
       <StyledForm onSubmit={handleAddCustomerFormSubmit}>
         <label htmlFor="firstName">Name</label>
@@ -233,15 +235,77 @@ export default function CustomerForm({
 
         <button type="submit">save</button>
       </StyledForm>
+      <StyledDiv></StyledDiv>
     </>
   );
 }
 
-const StyledForm = styled.form`
+const StyledSection = styled.section`
+  top: 10vh;
+`;
+
+const StyledEditForm = styled.form`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  bottom: 0px;
   gap: 5px;
+  input {
+    margin-right: 2em;
+    border-radius: 0.8em;
+  }
+  button {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    border-radius: 2em;
+    text-decoration: none;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #4eb5f1;
+    text-align: center;
+  }
+`;
+const StyledUl = styled.ul`
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 2em;
+  padding-top: 0.6em;
+  border: 2px solid #4eb5f1;
+  border-radius: 2em;
+  li {
+    padding-bottom: 0.6em;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    button {
+      display: inline-block;
+      padding: 0.3em 1.2em;
+      margin: 0 2em 0.3em 0;
+      border-radius: 2em;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-weight: 300;
+      color: #ffffff;
+      background-color: #4eb5f1;
+      text-align: center;
+    }
+  }
+`;
+
+const StyledForm = styled.form`
+  bottom: 20em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border: 2px solid #4eb5f1;
+  border-radius: 2em;
+  input {
+    border-radius: 10px;
+    margin-right: 0.8em;
+  }
   button {
     display: inline-block;
     padding: 0.3em 1.2em;
@@ -255,20 +319,7 @@ const StyledForm = styled.form`
     text-align: center;
   }
 `;
-const StyledUl = styled.ul`
-  li {
-    list-style: none;
-    button {
-      display: inline-block;
-      padding: 0.3em 1.2em;
-      margin: 0 0.3em 0.3em 0;
-      border-radius: 2em;
-      box-sizing: border-box;
-      text-decoration: none;
-      font-weight: 300;
-      color: #ffffff;
-      background-color: #4eb5f1;
-      text-align: center;
-    }
-  }
+
+const StyledDiv = styled.div`
+  height: 5em;
 `;

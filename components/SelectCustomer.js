@@ -10,7 +10,7 @@ export default function SelectCustomer({
       <label>
         select a customer...
         <select onChange={onChange}>
-          <option>please select</option>
+          <option>select...</option>
           {customers.map((customer) => (
             <option value={customer.id} key={customer.id}>
               {customer.firstName} {customer.lastName}
@@ -27,10 +27,15 @@ export default function SelectCustomer({
 
 const StyledSection = styled.section`
   margin: auto;
-  width: 50%;
-  padding-top: 10%;
+  margin-top: 4em;
+  width: 60%;
+  padding-top: 2em;
+  padding-left: 2em;
+  padding-bottom: 2em;
+  border: 2px solid #4eb5f1;
+  border-radius: 2em;
   label {
-    line-height: 2.5rem;
+    line-height: 2em;
     font-size: 20px;
     select {
       color: #ffffff;
@@ -40,11 +45,11 @@ const StyledSection = styled.section`
     }
     button:disabled {
       display: inline-block;
-      padding: 0.3em 1.2em;
+      padding: 0.3em 1em;
       border-radius: 2em;
       box-sizing: border-box;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       color: #ffffff;
       background-color: red;
@@ -53,11 +58,11 @@ const StyledSection = styled.section`
     }
     button:enabled {
       display: inline-block;
-      padding: 0.3em 1.2em;
+      padding: 0.3em 1em;
       border-radius: 2em;
       box-sizing: border-box;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       color: #ffffff;
       background-color: #4eb5f1;

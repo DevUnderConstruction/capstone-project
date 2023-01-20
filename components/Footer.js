@@ -8,7 +8,7 @@ export default function Footer({
 }) {
   return (
     <StyledFooter>
-      <button onClick={onClickClient}>Client</button>
+      <button onClick={onClickClient}>Account</button>
       <button onClick={onClickHome}>Home</button>
       <button onClick={onClickCustomer}>Customer</button>
       <button onClick={onClickArticle}>Article</button>
@@ -23,10 +23,14 @@ const StyledFooter = styled.footer`
   align-items: center;
   width: 100vw;
   position: fixed;
+  left: 0;
   bottom: 0;
-  border-top: 1px solid black;
-  padding-top: 10px;
+  border-top: 2px solid black;
+  border-radius: 15px 15px 0px 0px;
+  padding-top: 1em;
+  padding-bottom: 1em;
   background-color: #ffffff;
+
   button {
     display: inline-block;
     padding: 0.3em 1.2em;
