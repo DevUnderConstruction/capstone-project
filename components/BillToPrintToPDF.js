@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export const BillToPrintToPDF = React.forwardRef((props, ref) => {
-  console.log(props);
   const invoiceItems = props.selectedArticles;
 
   return (
